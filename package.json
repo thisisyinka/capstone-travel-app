@@ -1,0 +1,15 @@
+{
+    "name": "capstone-travel-app",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --env=jsdom",
+        "start": "node src/server/index.js",
+        "dev-build": "webpack serve --config webpack.dev.js --open",
+        "dev-prod": "webpack --config webpack.prod.js"
+    },
+    "keywords": [],
+    "author": "Layinka",
+    "license": "ISC",
+    "description": ""
+}
