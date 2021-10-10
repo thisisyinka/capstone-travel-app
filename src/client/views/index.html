@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
     />
-    <link rel="stylesheet" href="/styles/general.css" />
-    <link rel="stylesheet" href="/styles/header.css" />
-    <link rel="stylesheet" href="/styles/body.css" />
-    <link rel="stylesheet" href="/styles/footer.css" />
+    <!-- <link type="text/css" rel="stylesheet" href="/styles/general.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/header.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/body.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/footer.css" /> -->
     <title>FEND Capstone - Travel App</title>
   </head>
   <body>
@@ -25,7 +26,7 @@
           </div>
 
           <div class="the-form">
-            <form>
+            <form onsubmit="return Travel.getData(event)">
               <input
                 type="text"
                 id="location"
@@ -34,21 +35,34 @@
               />
               <br />
               <br />
-              <input type="date" id="from" name="from" placeholder="From" />
+              <!-- <input
+                type="text"
+                id="from"
+                name="from"
+                placeholder="From: DD/MM/YYY"
+              /> -->
+              <!-- <input type="date" id="from" name="from" placeholder="From" />
               <br />
               <br />
-              <input type="date" id="to" name="to" placeholder="From" />
+              <input type="date" id="to" name="to" placeholder="to" /> -->
               <br />
               <br />
               <br />
-              <input type="submit" name="" id="go" value="Goooooo..." />
+              <input
+                type="submit"
+                id="go"
+                name=""
+                value="Goooooo..."
+                onclick="return Travel.getData(event)"
+                onsubmit="return getData(event)"
+              />
             </form>
           </div>
         </div>
         <div class="main-image">
           <!-- Image gotten from Travel illustrations by Storyset (https://storyset.com/illustration/trip/cuate) -->
           <img
-            src="https://res.cloudinary.com/layinkawebdev/image/upload/v1633555154/Udacity/trip-cuate_mx97wb.png"
+            src="https://res.cloudinary.com/layinkawebdev/image/upload/v1633624086/Udacity/trip-cuate-final_z4tvss.png"
             alt="Traveller"
           />
         </div>
@@ -56,8 +70,43 @@
       <section class="section-two">
         <div class="trips">
           <h1>My Trips</h1>
+
+          <div class="results">
+            <div class="wrapper">
+              <div id="main-image"></div>
+              <div class="bottom">
+                <div class="location-name"></div>
+                <div class="content">
+                  <div class="weather"></div>
+                  <div class="divider"></div>
+                  <div class="dates"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="results">
+            <div class="card">
+              <div class="top"></div>
+              <div class="bottom">
+                <div class="location-name"></div>
+                <div class="content">
+                  <div class="weather"></div>
+                  <div class="divider"></div>
+                  <div class="dates"></div>
+                </div>
+              </div>
+            </div>
+          </div> -->
         </div>
       </section>
     </main>
+
+    <!-- <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    </script> -->
   </body>
 </html>
