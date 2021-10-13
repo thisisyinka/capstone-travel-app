@@ -11,10 +11,6 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
     />
-    <!-- <link type="text/css" rel="stylesheet" href="/styles/general.css" />
-    <link type="text/css" rel="stylesheet" href="/styles/header.css" />
-    <link type="text/css" rel="stylesheet" href="/styles/body.css" />
-    <link type="text/css" rel="stylesheet" href="/styles/footer.css" /> -->
     <title>FEND Capstone - Travel App</title>
   </head>
   <body>
@@ -26,7 +22,7 @@
           </div>
 
           <div class="the-form">
-            <form onsubmit="return Travel.getData(event)">
+            <form onsubmit="return Travel.getTravelData(event)">
               <input
                 type="text"
                 id="location"
@@ -35,27 +31,12 @@
               />
               <br />
               <br />
-              <!-- <input
-                type="text"
-                id="from"
-                name="from"
-                placeholder="From: DD/MM/YYY"
-              /> -->
-              <!-- <input type="date" id="from" name="from" placeholder="From" />
-              <br />
-              <br />
-              <input type="date" id="to" name="to" placeholder="to" /> -->
+              <input type="text" id="to" name="to" placeholder="July 5 2021" />
+              <!-- <input type="date" id="from" name="from" placeholder="From" /> -->
               <br />
               <br />
               <br />
-              <input
-                type="submit"
-                id="go"
-                name=""
-                value="Goooooo..."
-                onclick="return Travel.getData(event)"
-                onsubmit="return getData(event)"
-              />
+              <input type="submit" id="go" name="" value="Goooooo..." />
             </form>
           </div>
         </div>
@@ -72,31 +53,24 @@
           <h1>My Trips</h1>
 
           <div class="results">
-            <div class="wrapper">
+            <div id="result-wrapper">
               <div id="main-image"></div>
               <div class="bottom">
                 <div class="location-name"></div>
                 <div class="content">
                   <div class="weather"></div>
-                  <div class="divider"></div>
-                  <div class="dates"></div>
+                  <div class="divider">
+                    <div class="line"></div>
+                  </div>
+                  <div class="dates">
+                    <div class="departure"></div>
+                    <div class="timer"></div>
+                  </div>
                 </div>
               </div>
+              <div id="print-div"></div>
             </div>
           </div>
-          <!-- <div class="results">
-            <div class="card">
-              <div class="top"></div>
-              <div class="bottom">
-                <div class="location-name"></div>
-                <div class="content">
-                  <div class="weather"></div>
-                  <div class="divider"></div>
-                  <div class="dates"></div>
-                </div>
-              </div>
-            </div>
-          </div> -->
         </div>
       </section>
     </main>

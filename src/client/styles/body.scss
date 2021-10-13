@@ -19,7 +19,7 @@
 //     padding: 25px 0;
 // }
 
-#location, #from {
+#location, #to {
     width: 100%;
     border: none;
     outline: none;
@@ -32,15 +32,29 @@
 //     padding: 25px 0;
 // }
 
-#go {
+#go, #print-trip {
     background-color: #E91515;
-    width: 100%;
     border-radius: 10px;
     padding: 15px;
     color: #fff;
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+#go {
+    width: 100%;
+}
+
+#print-trip {
+    width: 60%;
+    margin-top: 8px;
+}
+
+#print-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .section-one {
@@ -85,7 +99,7 @@
 }
 
 .bottom .location-name {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 700;
     text-align: center;
     padding: 30px 0;
@@ -97,7 +111,11 @@
     align-items: center;
 }
 
-.content .divider.seperator {
+.divider {
+    padding: 0 10px;
+}
+
+.divider .line.seperator {
     width: 1px;
     height: 120px;
     background-color: #E91515;
@@ -110,15 +128,44 @@
 }
 
 .weather .deets {
-    width: 211px;
-    margin-right: 7px;
+    width: 100px;
+
+    img {
+        width: 80%;
+    }
 }
 
 .weather .temperature {
-    font-size: 40px;
+    font-size: 30px;
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.results #result-wrapper.card {
+    width: 560px;
+    height: 550px;
+    background-color: #F8F8F8;
+    border: 1px solid #EBEBEB;
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
+    margin-bottom: 40px;
+}
+
+.content .departure {
+    width: 275px;
+}
+
+.dates .timer {
+    margin-top: 4px;
+}
+
+.dates .bold {
     font-weight: 700;
 }
 
+.dates .uppercase {
+    text-transform: uppercase;
+}
 
 @media screen and (min-width: 576px) {
     .heading {
@@ -139,7 +186,7 @@
         outline: none;
     }
     
-    #location, #from, #to {
+    #location, #to {
         border-bottom: 1px solid #E91515;
         padding: 25px 15px;
     }
@@ -171,13 +218,8 @@
         }
     }
 
-    .results .wrapper.card {
-        width: 600px;
-        height: 528px;
-        background-color: #F8F8F8;
-        border: 1px solid #EBEBEB;
-        border-top-left-radius: 23px;
-        border-top-right-radius: 23px;
-        margin-bottom: 40px;
+    .results #result-wrapper.card {
+        width: 560px;
+        height: 550px;
     }
 }
