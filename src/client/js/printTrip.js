@@ -1,6 +1,5 @@
 import { jsPDF } from "jspdf";
 const printWrapper = document.getElementById('print-div');
-// const tripDateWrapper = document.querySelector('.dates');
 const contentWrapper = document.querySelector('.bottom');
 
 const printTrip = () => {

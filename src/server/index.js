@@ -11,7 +11,6 @@ app.use(cors());
 
 
 const axios = require('axios').default;
-const { response } = require('express')
 
 app.use(express.static('dist'));
 
@@ -44,6 +43,7 @@ app.post('/newtrip', async (req, res) => {
 
     const [geoname] = geonamesData.geonames;
 
+    //Get Weatherbit data
     const { data: weatherbitData } = await axios.get(`${weatherbitBaseURL}lat=${geoname.lat}&lon=${geoname.lng}&key=${weatherbitApiKey}`);
 
     const weatherbitObject = weatherbitData.data[0];
@@ -53,6 +53,7 @@ app.post('/newtrip', async (req, res) => {
         temp: weatherbitObject.temp
     }
 
+    //Get pixabay data
     const { data: pixabayData } = await axios.get(`${pixabayBaseURL}?key=${pixabayApiKey}&q=${location}&category=places&orientation=horizontal&image_type=photo`);
 
     res.send({
