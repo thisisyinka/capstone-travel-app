@@ -1,4 +1,5 @@
 import { updateUI } from './updateUI';
+import { printTrip } from "./printTrip";
 const resultsDiv = document.querySelector('.results');
 const button = document.getElementById('go');
 
@@ -11,16 +12,16 @@ const formOptions = {
     }
 }
 
-const getData = e => {
+const getTravelData = e => {
     e.preventDefault();
     
         const locationInput = document.getElementById('location').value;
-        // const dateValue = document.getElementById('from').value;
+        const dateInput = document.getElementById('to').value;
     
         axios.post('http://localhost:8001/newtrip', {
             ...formOptions,
-            city: locationInput
-            // date: dateValue
+            city: locationInput,
+            date: dateInput
         })
         .then(function(response) {
             console.log(response);
@@ -31,4 +32,7 @@ const getData = e => {
         })
 };
 
-export {getData}
+button.addEventListener("click", getTravelData);
+printTrip();
+
+export { getTravelData }

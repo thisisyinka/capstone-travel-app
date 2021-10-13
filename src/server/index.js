@@ -23,12 +23,13 @@ const port = 8001;
 const server = app.listen(port, () => console.log(`Server successfully running on port ${port}`));
 
 
-app.post('/newtrip', (req, res) => {
-    //GEONAMES
+app.post('/newtrip', async (req, res) => {
+    try {
+        //GEONAMES
     const baseURL = "http://api.geonames.org/searchJSON?";
     const username = process.env.GEONAMES_USERNAME;
     const location = req.body.city;
-    const date = req.body.date;
+    const departureDate = req.body.date;
 
     //WEATHERBIT
     const weatherbitBaseURL = "http://api.weatherbit.io/v2.0/current?";
@@ -38,63 +39,30 @@ app.post('/newtrip', (req, res) => {
     const pixabayBaseURL = "https://pixabay.com/api/";
     const pixabayApiKey = process.env.PIXABAY_API_KEY;
 
-    async function fetchDetails() {
-        try {
-            const response = await axios.get(`${baseURL}q=${location}&maxRows=1&username=${username}`);
-            const geonames = response.data;
+    //Get Geonames data
+    const { data: geonamesData } = await axios.get(`${baseURL}q=${location}&maxRows=1&username=${username}`);
 
-            const weatherbitFetch = await axios.get(`${weatherbitBaseURL}lat=${geonames.lat}&lon=${geonames.lon}&key=${weatherbitApiKey}`)
-            const weatherbitResult = weatherbitFetch.data;
-            return weatherbitResult;
-        } catch (error) {
-            console.log("Something went wrong", error);
-        }
+    const [geoname] = geonamesData.geonames;
+
+    const { data: weatherbitData } = await axios.get(`${weatherbitBaseURL}lat=${geoname.lat}&lon=${geoname.lng}&key=${weatherbitApiKey}`);
+
+    const weatherbitObject = weatherbitData.data[0];
+
+    const weather = {
+        ...weatherbitObject.weather,
+        temp: weatherbitObject.temp
     }
-    fetchDetails();
-    
-    axios.get(`${pixabayBaseURL}?key=${pixabayApiKey}&q=${location}&category=places&orientation=horizontal&image_type=photo`)
-        .then(function (response) {
-            console.log(response);
-            res.send(response.data).status(200);
-        })
-        .catch(function (error) {
-            console.log(error);
-            res.send(error).status(500);
-        })
 
+    const { data: pixabayData } = await axios.get(`${pixabayBaseURL}?key=${pixabayApiKey}&q=${location}&category=places&orientation=horizontal&image_type=photo`);
 
-
-    // axios.get(`${baseURL}q=${location}&maxRows=1&username=${username}`)
-    //     .then(function (response) { 
-    //         console.log(response.data);
-    //         // res.send(response.data).status(200);
-    //         // const geonamesResults = response.data;
-    //         // return geonamesResults;
-    //         return res.send({geonames: response.data});
-    //     })
-    //     .then(function (response) {
-    //         return axios.get(`${weatherbitBaseURL}lat=${geonames.lat}&lon=${geonames.lng}&key=${weatherbitApiKey}`);
-    //     })
-    //     .catch(function (error) {
-    //         console.log('Nothing happened', error);
-    //         res.send(error).status(500);
-    //     });
-
-
-    // axios.get(`${weatherbitBaseURL}lat=${geonames.lat}&lon=${geonames.lng}&key=${weatherbitApiKey}`)
-    //     .then(function (response) {
-    //         console.log(response.data);
-    //         // res.send(response.data).status(200);
-    //         const weatherbitResults = res.send({
-    //             temp: response.data.temp,
-    //             weather: response.data.weather.description,
-    //             icon: response.data.weather.icon
-    //         })
-    //         return weatherbitResults;
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //         res.send(error).status(500);
-    //     })
+    res.send({
+        geoname,
+        weather,
+        picture: pixabayData?.hits?.[0] || {},
+        date: departureDate
+    }).status(200);
+    } catch (error) {
+        res.send(error).status(500);
+    }
 
 })

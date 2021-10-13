@@ -8,11 +8,14 @@ In the words of Udacity, this project aims to allow us put all the skills learnt
 ## Getting Started
 1. Clone this repo by using `git clone` command.
 2. Run `npm install` to install all the dependencies of the project
-3. Off you go 🏃🏾‍♀️💨
+3. Run `npm run build-dev` to start the dev server
+4. Run `npm run build-pro` to create the dist folder
+5. Run `npm start` to start the server
+6. Off you go 🏃🏾‍♀️💨
 
 ## Features
 1. Asynchronous JavaScript
-2. External APIs
+2. External APIs (Geonames.org, Weatherbit.io & Pixabay)
 3. Web server
 4. Build tool (Webpack)
 
