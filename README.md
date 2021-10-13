@@ -8,10 +8,11 @@ In the words of Udacity, this project aims to allow us put all the skills learnt
 ## Getting Started
 1. Clone this repo by using `git clone` command.
 2. Run `npm install` to install all the dependencies of the project
-3. Run `npm run build-dev` to start the dev server
-4. Run `npm run build-pro` to create the dist folder
-5. Run `npm start` to start the server
-6. Off you go 🏃🏾‍♀️💨
+3. Run `nvm use` to use the appropriate node version for the project to run
+4. Run `npm run build-dev` to start the dev server
+5. Run `npm run build-pro` to create the dist folder
+6. Run `npm start` to start the server
+7. Off you go 🏃🏾‍♀️💨
 
 ## Features
 1. Asynchronous JavaScript
