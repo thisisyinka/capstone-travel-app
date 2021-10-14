@@ -1,4 +1,4 @@
-const tripCountdown = require('../src/client/js/tripCountdown');
+import { tripCountdown } from "../src/client/js/tripCountdown";
 
 describe("check now is a number", () => {
     test('now should be converted to milliseconds', () => {
