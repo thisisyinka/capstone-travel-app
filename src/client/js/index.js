@@ -1,9 +1,9 @@
 import { updateUI } from './updateUI';
 import { printTrip } from "./printTrip";
-const resultsDiv = document.querySelector('.results');
-const button = document.getElementById('go');
-
 import axios from 'axios';
+
+
+const button = document.getElementById('go');
 
 const formOptions = {
     credentials: 'same-origin',
@@ -32,7 +32,10 @@ const getTravelData = e => {
         })
 };
 
-button.addEventListener("click", getTravelData);
+//for jest
+document.addEventListener('load', function() {
+    button.addEventListener("click", getTravelData);
+})
 printTrip();
 
 export { getTravelData }

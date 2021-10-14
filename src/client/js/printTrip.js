@@ -7,7 +7,11 @@ const printTrip = () => {
     printButton.setAttribute("type", "submit");
     printButton.setAttribute("id", "print-trip");
     printButton.setAttribute("value", "Print Trip");
-    printWrapper.appendChild(printButton);
+    
+    //For jest
+    window.addEventListener('load', (event) => {
+        printWrapper.appendChild(printButton);
+    })
 
     const printTrip = () => {
         const doc = new jsPDF({
